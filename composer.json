@@ -1,0 +1,19 @@
+{
+    "name": "antikode/fileuploader",
+    "description": "fileuploader",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Rio",
+            "email": "alfarioekaputra@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Antikode\\Fileuploader\\": "packages/antikode/fileuploader/src/"
+        }
+    }
+}
