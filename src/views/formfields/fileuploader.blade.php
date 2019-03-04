@@ -1,51 +1,54 @@
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
 <style>
-      body {
-            font-family: 'Roboto', sans-serif;
-            font-size: 14px;
-    line-height: normal;
-            background-color: #fff;
+    body {
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        line-height: normal;
+        background-color: #fff;
 
-            margin: 0;
-            padding: 20px;
-      }
+        margin: 0;
+        padding: 20px;
+    }
 
-.fileuploader {
-    max-width: 460px;
-}
+    .fileuploader {
+        max-width: 643px;
+    }
 </style>
+
+{{-- preload files --}}
+@if (isset($dataTypeContent->{$row->field}))
+    @php
+        $preloadedFiles = [];
+    @endphp
+    @foreach (json_decode($dataTypeContent->{$row->field}) as $item)
+        @php
+            $preloadedFiles[] = array(
+                "name" => $item->name,
+                "type" => $item->type,
+                "size" => $item->size,
+                "file" => url($item->file),
+                "data" => array(
+                    "url" => $item->data->url,
+                ),
+            );
+        @endphp
+    @endforeach
+
+    @php
+        $preloadedFiles = json_encode($preloadedFiles);
+    @endphp
+
+@endif
 
 <input type="file"
     class="form-control"
-    name="files"
+    name={{ $row->field }}[]
+    id="fileuploader-voyager"
     data-name="{{ $row->display_name }}"
     @if($row->required == 1) required @endif
     step="any"
     placeholder="{{ isset($options->placeholder)? old($row->field, $options->placeholder): $row->display_name }}"
-    value="@if(isset($dataTypeContent->{$row->field})){{ old($row->field, $dataTypeContent->{$row->field}) }}@else{{old($row->field)}}@endif">
+    data-fileuploader-files={{ isset($preloadedFiles) ? $preloadedFiles : '' }}>
 
+<input type="hidden" name="images_data" id="images_data" value="{{($dataTypeContent->{$row->field})}}">
+<input type="hidden" name="images_data_sort" id="images_data_sort" value="{{($dataTypeContent->{$row->field})}}">
 
-<script>
-$(document).ready(function() {
-	
-	// enable fileuploader plugin
-	$('input[name="files"]').fileuploader({
-		addMore: true,
-        thumbnails: {
-            onItemShow: function(item) {
-                // add sorter button to the item html
-                item.html.find('.fileuploader-action-remove').before('<a class="fileuploader-action fileuploader-action-sort" title="Sort"><i></i></a>');
-            }
-        },
-		sorter: {
-			selectorExclude: null,
-			placeholder: null,
-			scrollContainer: window,
-			onSort: function(list, listEl, parentEl, newInputEl, inputEl) {
-                // onSort callback
-			}
-		}
-	});
-	
-});
-</script>

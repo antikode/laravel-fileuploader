@@ -25,6 +25,7 @@ class FileuploaderServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        include __DIR__.'/routes.php';
         $this->loadViewsFrom(__DIR__ . '/views', 'antikode.fileuploader');
     }
 }

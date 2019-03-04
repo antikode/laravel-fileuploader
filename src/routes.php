@@ -1,2 +1,3 @@
 <?php
-Route::resource('/task', 'Antikode\Fileuploader\FileuploaderController');
+
+Route::post('/fileuploader', 'Antikode\Fileuploader\Controllers\FileuploaderController@upload');

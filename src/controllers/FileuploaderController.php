@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Constraint;
 use Intervention\Image\Facades\Image as InterventionImage;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 
 class FileuploaderController extends Controller
 {
@@ -53,6 +54,16 @@ class FileuploaderController extends Controller
 
         Storage::disk(config('voyager.storage.disk'))->put($filePath, (string) $image, 'public');
 
-        return $filesPath;
+        $fileMetaData = [
+            "name" => $filename,
+            "type" => $image->mime(),
+            "size" => $image->filesize(),
+            "file" => $filePath,
+            "data" => [
+                "url" => url($filePath)
+            ]
+        ];
+
+        return $fileMetaData;
     }
 }
