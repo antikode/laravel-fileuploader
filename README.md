@@ -39,6 +39,16 @@ Open _app/config/voyager.php_ add _additional_js_ and _additional_css_
     ],
 ```
 
+Open _config/app.php_ add this to providers
+
+```php
+'providers' = [
+    ...
+    Antikode\Fileuploader\FileuploaderServiceProvider::class,
+    ...
+]
+```
+
 
 **Setup Javascript**
 
