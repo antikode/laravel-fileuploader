@@ -27,5 +27,10 @@ class FileuploaderServiceProvider extends ServiceProvider
     {
         include __DIR__.'/routes.php';
         $this->loadViewsFrom(__DIR__ . '/views', 'antikode.fileuploader');
+
+        //publish assets
+        $this->publishes([
+            __DIR__.'/public/assets' => public_path('vendor/antikode/fileuploader'),
+        ], 'antikode-fileuploader');
     }
 }

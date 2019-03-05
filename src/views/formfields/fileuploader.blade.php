@@ -1,3 +1,4 @@
+
 <style>
     .fileuploader {
         max-width: 643px;
@@ -41,4 +42,3 @@
 
 <input type="hidden" name="images_data" id="images_data" value="{{($dataTypeContent->{$row->field})}}">
 <input type="hidden" name="images_data_sort" id="images_data_sort" value="{{($dataTypeContent->{$row->field})}}">
-
