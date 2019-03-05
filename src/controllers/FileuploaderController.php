@@ -92,7 +92,7 @@ class FileuploaderController extends Controller
             "size" => $image->filesize(),
             "file" => $filePath,
             "data" => [
-                "url" => url($filePath)
+                "url" => $filePath
             ]
         ];
 
