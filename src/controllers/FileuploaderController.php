@@ -11,7 +11,39 @@ use Illuminate\Http\Request;
 
 class FileuploaderController extends Controller
 {
-    public function multiple($file)
+    public function request($request)
+    {
+        $filesPath = [];
+        if($request->hasfile('images')){
+            $filesPath = $this->uploadMultiple($request->file('images'));
+            
+            //get image from database and merge with new image data
+            if($request->images_data){
+                $filesPath = array_merge(json_decode($request->images_data), $filesPath);
+            }else{
+                $filesPath = $filesPath;
+            }
+        }else{
+            //check if image sort
+            if($request->images_data_sort)
+                $filesPath = json_decode($request->images_data_sort);
+        }
+
+        return $filesPath;
+    }
+
+    private function uploadMultiple($files)
+    {
+        $filesPath = [];
+        foreach($files as $key => $file)
+        {
+            $filesPath[$key] = $this->upload($file);
+        }
+
+        return $filesPath;
+    }
+
+    private function upload($file)
     {
         $filesPath = [];
         $image = InterventionImage::make($file);

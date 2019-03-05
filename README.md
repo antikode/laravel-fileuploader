@@ -41,7 +41,8 @@
         // Here you can specify additional assets you would like to be included in the master.blade
         'additional_css' => [
             //'css/custom.css',
-            'vendor/antikode/fileuploader/css/app.css'
+            'vendor/antikode/fileuploader/css/app.css',
+            'vendor/antikode/fileuploader/css/font/font.css',
         ],
 
         'additional_js' => [
