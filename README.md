@@ -82,58 +82,54 @@
                     $this->request = $request;
                 }
                 /**
-                 * Handle the project "creating" event.
-                 *
-                 * @param  \App\Project  $project
+                * Handle the project "creating" event.
+                *
+                * @param  \App\Project  $project
                 * @return void
                 */
                 public function creating(Project $project)
                 {
                     $files = new Fileuploader();
-                    $filesPath = [];
                     
-                    if($this->request->hasfile('images')){
-                        foreach($this->request->file('images') as $key => $file)
-                        {
-                            $filesPath[$key] = $files->multiple($file);
-                        }
+                    $filesPath = $files->request($this->request);
 
-                        //set images to image metadata json
-                        $project->images = json_encode($filesPath);
-                    }
+                    //set images to image metadata json
+                    $project->images = json_encode($filesPath);
                     
                 }
 
                 /**
-                 * Handle the project "updating" event.
-                 *
-                 * @param  \App\Project  $project
+                * Handle the project "updating" event.
+                *
+                * @param  \App\Project  $project
                 * @return void
                 */
                 public function updating(Project $project)
                 {
                     $files = new Fileuploader();
-                    $filesPath = [];
+                    
+                    $filesPath = $files->request($this->request);
 
-                    if($this->request->hasfile('images')){
-                        foreach($this->request->file('images') as $key => $file)
-                        {
-                            $filesPath[$key] = $files->multiple($file);
-                        }
+                    //set images to image metadata json
+                    $project->images = json_encode($filesPath);
+                }
 
-                        //get image from database and merge with new image data
-                        if($this->request->images_data){
-                            $filesPath = array_merge(json_decode($this->request->images_data), $filesPath);
-                        }
-                    }else{
-                        //check if image sort
-                        if($this->request->images_data_sort)
-                            $filesPath = json_decode($this->request->images_data_sort);
-                    }
+                /**
+                * Handle the project "saving" event.
+                *
+                * @param  \App\Project  $project
+                * @return void
+                */
+                public function saving(Project $project)
+                {
+                    $files = new Fileuploader();
+                    
+                    $filesPath = $files->request($this->request);
 
                     //set images to image metadata json
                     $project->images = json_encode($filesPath);
                 }
             }
+
 
             ```
