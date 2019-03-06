@@ -68,7 +68,7 @@ class FileuploaderController extends Controller
         $resize_quality = isset($this->options->quality) ? intval($this->options->quality) : 75;
 
         $filename = Str::random(20);
-        $path = 'storage/projects'.DIRECTORY_SEPARATOR.date('FY').DIRECTORY_SEPARATOR;
+        $path = 'projects'.DIRECTORY_SEPARATOR.date('FY').DIRECTORY_SEPARATOR;
         
         array_push($filesPath, $path.$filename.'.'.$file->getClientOriginalExtension());
         $filePath = $path.$filename.'.'.$file->getClientOriginalExtension();
@@ -90,7 +90,7 @@ class FileuploaderController extends Controller
             "name" => $filename,
             "type" => $image->mime(),
             "size" => $image->filesize(),
-            "file" => $filePath,
+            "file" => 'storage/'.$filePath,
             "data" => [
                 "url" => $filePath
             ]
