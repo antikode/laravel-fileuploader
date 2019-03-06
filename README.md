@@ -35,7 +35,7 @@
             ...
         ]
         ```
-    * **Open _app/config/voyager.php_ add _additional_js_ and _additional_css_**
+    * **Open _config/voyager.php_ add _additional_js_ and _additional_css_**
 
         ```php
         // Here you can specify additional assets you would like to be included in the master.blade
