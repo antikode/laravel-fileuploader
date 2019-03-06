@@ -23,18 +23,19 @@
         ```console
             composer require antikode/fileuploader
         ```
+   * **Open _config/app.php_ add this to providers**
+        ```php
+            'providers' = [
+                ...
+                Antikode\Fileuploader\FileuploaderServiceProvider::class,
+                ...
+            ]
+    ```
    * **Publish vendor assets**
         ```
             php artisan vendor:publish --tag=antikode-fileuploader
         ```
-   * **Open _config/app.php_ add this to providers**
-        ```php
-        'providers' = [
-            ...
-            Antikode\Fileuploader\FileuploaderServiceProvider::class,
-            ...
-        ]
-        ```
+
     * **Open _config/voyager.php_ add _additional_js_ and _additional_css_**
 
         ```php
