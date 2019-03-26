@@ -30,7 +30,7 @@
                 Antikode\Fileuploader\FileuploaderServiceProvider::class,
                 ...
             ]
-    ```
+        ```
    * **Publish vendor assets**
         ```
             php artisan vendor:publish --tag=antikode-fileuploader
