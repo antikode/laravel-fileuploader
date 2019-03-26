@@ -2,7 +2,7 @@ $(document).ready(function() {
 	$('#images_data').val();
 	
 	// enable fileuploader plugin
-	$('#fileuploader-voyager').fileuploader({
+	$('.fileuploader-voyager').fileuploader({
         extensions: ['jpg', 'jpeg', 'png', 'gif', 'bmp'],
         changeInput: ' ',
         theme: 'thumbnails',

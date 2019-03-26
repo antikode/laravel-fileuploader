@@ -31,7 +31,7 @@
 @endif
 
 <input type="file"
-    class="form-control"
+    class="form-control fileuploader-voyager"
     name={{ $row->field }}[]
     id="fileuploader-voyager"
     data-name="{{ $row->display_name }}"
