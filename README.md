@@ -3,6 +3,17 @@
     ```
     https://voyager.readme.io/docs/installation
     ```
+* **Update Antikode Fileuploader**
+    * **Composer Update**
+        ```console
+            composer update antikode/fileuploader
+        ```
+    * **Remove folder _public/vendor/antikode_**
+    * **Publish vendor assets**
+        ```
+            php artisan vendor:publish --tag=antikode-fileuploader
+        ```
+
 * **Install Antikode Fileuploader**
    * **Generate Token**
         ```
