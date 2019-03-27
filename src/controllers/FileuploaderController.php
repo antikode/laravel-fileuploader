@@ -11,13 +11,18 @@ use Illuminate\Http\Request;
 
 class FileuploaderController extends Controller
 {
-    public function request($request)
+    /**
+     * @param Request $request
+     * @param String $image_name
+     * 
+     * @return array
+     */
+    public function request($request, $image_name)
     {
         $filesPath = [];
-        $image_name = $request->get('image_name');
-
+        
         if($request->hasfile($image_name)){
-            
+
             $filesPath = $this->uploadMultiple($request->file($image_name));
             
             //get image from database and merge with new image data
@@ -31,7 +36,7 @@ class FileuploaderController extends Controller
             if($request->images_data_sort)
                 $filesPath = json_decode($request->images_data_sort);
         }
-
+        
         return $filesPath;
     }
 

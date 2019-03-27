@@ -92,10 +92,16 @@
                 {
                     $files = new Fileuploader();
                     
-                    $filesPath = $files->request($this->request);
+                    $filesPath = $files->request($this->request, 'input_name');
 
                     //set images to image metadata json
                     $project->images = json_encode($filesPath);
+
+                    //add another filePath if necessary
+                    /*
+                    $filePath2 = $files->request($this->request, 'input_name2');
+                    $project->mobile_images = json_encode($filePath2);
+                    */
                     
                 }
 
@@ -109,10 +115,16 @@
                 {
                     $files = new Fileuploader();
                     
-                    $filesPath = $files->request($this->request);
+                    $filesPath = $files->request($this->request, 'input_name');
 
                     //set images to image metadata json
                     $project->images = json_encode($filesPath);
+
+                    //add another filePath if necessary
+                    /*
+                    $filePath2 = $files->request($this->request, 'input_name2');
+                    $project->mobile_images = json_encode($filePath2);
+                    */
                 }
 
                 /**
@@ -125,10 +137,16 @@
                 {
                     $files = new Fileuploader();
                     
-                    $filesPath = $files->request($this->request);
+                    $filesPath = $files->request($this->request, 'input_name');
 
                     //set images to image metadata json
                     $project->images = json_encode($filesPath);
+
+                    //add another filePath if necessary
+                    /*
+                    $filePath2 = $files->request($this->request, 'input_name2');
+                    $project->mobile_images = json_encode($filePath2);
+                    */
                 }
             }
 
