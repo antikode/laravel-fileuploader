@@ -14,8 +14,11 @@ class FileuploaderController extends Controller
     public function request($request)
     {
         $filesPath = [];
-        if($request->hasfile('images')){
-            $filesPath = $this->uploadMultiple($request->file('images'));
+        $image_name = $request->get('image_name');
+
+        if($request->hasfile($image_name)){
+            
+            $filesPath = $this->uploadMultiple($request->file($image_name));
             
             //get image from database and merge with new image data
             if($request->images_data){
