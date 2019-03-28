@@ -26,15 +26,15 @@ class FileuploaderController extends Controller
             $filesPath = $this->uploadMultiple($request->file($image_name));
             
             //get image from database and merge with new image data
-            if($request->images_data){
-                $filesPath = array_merge(json_decode($request->images_data), $filesPath);
+            if($request->get('images_data_'.$image_name)){
+                $filesPath = array_merge(json_decode($request->get('images_data_'.$image_name)), $filesPath);
             }else{
                 $filesPath = $filesPath;
             }
         }else{
             //check if image sort
-            if($request->images_data_sort)
-                $filesPath = json_decode($request->images_data_sort);
+            if($request->get('images_data_sort_'.$image_name))
+                $filesPath = json_decode($request->get('images_data_sort_'.$image_name));
         }
         
         return $filesPath;
