@@ -41,6 +41,6 @@
     data-fileuploader-files={{ isset($preloadedFiles) ? $preloadedFiles : '' }}>
 
 <input type="hidden" value="{{$row->field}}" class="row_field">
-<input type="hidden" name="images_data" id="images_data_{{$row->field}}" value="{{($dataTypeContent->{$row->field})}}">
-<input type="hidden" name="images_data_sort" id="images_data_sort_{{$row->field}}" value="{{($dataTypeContent->{$row->field})}}">
+<input type="hidden" name="images_data_{{$row->field}}" id="images_data_{{$row->field}}" value="{{($dataTypeContent->{$row->field})}}">
+<input type="hidden" name="images_data_sort_{{$row->field}}" id="images_data_sort_{{$row->field}}" value="{{($dataTypeContent->{$row->field})}}">
 <input type="hidden" name="file_uploader_id" value="fileuploader-voyager-{{$row->field}}" id="file_uploader_id" class="file_uploader_id">
