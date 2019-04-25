@@ -17,13 +17,13 @@ class FileuploaderController extends Controller
      * 
      * @return array
      */
-    public function request($request, $image_name)
+    public function request($request, $image_name, $page)
     {
         $filesPath = [];
         
         if($request->hasfile($image_name)){
 
-            $filesPath = $this->uploadMultiple($request->file($image_name));
+            $filesPath = $this->uploadMultiple($request->file($image_name), $page);
             
             //get image from database and merge with new image data
             if($request->get('images_data_'.$image_name)){
@@ -40,18 +40,18 @@ class FileuploaderController extends Controller
         return $filesPath;
     }
 
-    private function uploadMultiple($files)
+    private function uploadMultiple($files, $page)
     {
         $filesPath = [];
         foreach($files as $key => $file)
         {
-            $filesPath[$key] = $this->upload($file);
+            $filesPath[$key] = $this->upload($file, $page);
         }
 
         return $filesPath;
     }
 
-    private function upload($file)
+    private function upload($file, $page)
     {
         $filesPath = [];
         $image = InterventionImage::make($file);
@@ -76,7 +76,7 @@ class FileuploaderController extends Controller
         $resize_quality = isset($this->options->quality) ? intval($this->options->quality) : 75;
 
         $filename = Str::random(20);
-        $path = 'projects'.DIRECTORY_SEPARATOR.date('FY').DIRECTORY_SEPARATOR;
+        $path = $page.DIRECTORY_SEPARATOR.date('FY').DIRECTORY_SEPARATOR;
         
         array_push($filesPath, $path.$filename.'.'.$file->getClientOriginalExtension());
         $filePath = $path.$filename.'.'.$file->getClientOriginalExtension();
